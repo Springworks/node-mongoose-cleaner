@@ -9,11 +9,9 @@ const MockSchema = new mongoose.Schema({
 });
 const MongooseCleanerModel = mongoose.model('MongooseCleanerModel', MockSchema);
 
-const internals = {
-  createMongooseDocument(params) {
-    return new MongooseCleanerModel(params);
-  },
-};
+function createMongooseDocument(params) {
+  return new MongooseCleanerModel(params);
+}
 
 describe('test/unit/mongoose-cleaner-test.js', () => {
 
@@ -24,7 +22,7 @@ describe('test/unit/mongoose-cleaner-test.js', () => {
       let document;
 
       beforeEach(() => {
-        document = internals.createMongooseDocument(params);
+        document = createMongooseDocument(params);
       });
 
       it('should return document as pure Javascript object', () => {
@@ -43,7 +41,7 @@ describe('test/unit/mongoose-cleaner-test.js', () => {
       let document;
 
       beforeEach(() => {
-        document = internals.createMongooseDocument({
+        document = createMongooseDocument({
           other_id: '537f844b2883b0d8c825270d',
         });
       });
