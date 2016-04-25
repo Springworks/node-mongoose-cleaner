@@ -1,0 +1,11 @@
+{
+  "extends": "springworks/babel",
+  "rules": {
+    "no-process-exit": 0,
+    "no-console": 1,
+    "prefer-const": 2
+  },
+  "parserOptions": {
+    "sourceType": "module"
+  }
+}
