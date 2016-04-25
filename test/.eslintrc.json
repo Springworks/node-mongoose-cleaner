@@ -1,0 +1,14 @@
+{
+  "extends": "springworks/mocha",
+  "globals": {
+    "should": false,
+    "sinon": false
+  },
+  "plugins": [
+    "should-promised"
+  ],
+  "rules": {
+    "springworks/top-describe-path": 2,
+    "should-promised/return-promise": 2
+  }
+}
