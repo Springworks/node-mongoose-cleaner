@@ -23,6 +23,7 @@ describe('test/unit/mongoose-cleaner-test.js', () => {
 
       beforeEach(() => {
         document = createMongooseDocument(params);
+        document.__v = 4;
       });
 
       it('should return document as pure Javascript object', () => {

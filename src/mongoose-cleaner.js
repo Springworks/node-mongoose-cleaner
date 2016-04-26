@@ -1,11 +1,11 @@
-import _ from 'lodash';
+import mapValues from 'lodash.mapvalues';
 
 function isLookingLikeMongooseDocument(obj) {
   return typeof obj.toObject === 'function';
 }
 
 function convertObjectIds(obj) {
-  return _.mapValues(obj, value => {
+  return mapValues(obj, value => {
     if (value && value.constructor && value.constructor.name === 'ObjectID') {
       return value.toString();
     }
@@ -26,8 +26,8 @@ const api = {
       lean = mongoose_doc.toObject();
     }
 
-    const omitted = _.omit(lean, '__v');
-    return convertObjectIds(omitted);
+    delete lean.__v;
+    return convertObjectIds(lean);
   },
 
 };
