@@ -8,7 +8,6 @@
     "should-promised"
   ],
   "rules": {
-    "springworks/top-describe-path": 2,
     "should-promised/return-promise": 2
   }
 }
