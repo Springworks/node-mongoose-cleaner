@@ -8,7 +8,8 @@
     "commit": "commit-wizard",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "build": "rm -rf lib && babel src --out-dir lib",
-    "prepublish": "npm run build"
+    "prepublish": "npm run build",
+    "postpublish": "greenkeeper-postpublish"
   },
   "author": "Springworks",
   "repository": {
@@ -29,6 +30,7 @@
     "eslint-plugin-mocha": "2.2.0",
     "eslint-plugin-should-promised": "1.0.8",
     "eslint-plugin-springworks": "2.0.1",
+    "greenkeeper-postpublish": "1.0.0",
     "mocha": "2.4.5",
     "mongoose": "4.4.14",
     "pre-git": "3.8.3",
