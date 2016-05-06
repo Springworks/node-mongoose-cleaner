@@ -3,8 +3,8 @@
   "description": "Strip out any mongoose info from a document",
   "main": "lib/mongoose-cleaner.js",
   "scripts": {
-    "test": "NODE_ENV=test _mocha -- test",
-    "lint": "eslint --cache .",
+    "test": "NODE_ENV=test mocha",
+    "lint": "eslint .",
     "commit": "commit-wizard",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "build": "rm -rf lib && babel src --out-dir lib",
