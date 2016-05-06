@@ -32,7 +32,7 @@
     "eslint-plugin-springworks": "2.0.1",
     "greenkeeper-postpublish": "1.0.0",
     "mocha": "2.4.5",
-    "mongoose": "4.4.14",
+    "mongoose": "4.4.15",
     "pre-git": "3.8.3",
     "semantic-release": "4.3.5"
   },
