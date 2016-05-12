@@ -12,18 +12,12 @@
     "postpublish": "greenkeeper-postpublish"
   },
   "author": "Springworks",
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:Springworks/mongoose-cleaner.git"
-  },
   "devDependencies": {
     "@springworks/test-harness": "1.3.4",
     "babel-cli": "6.8.0",
-    "babel-core": "6.8.0",
     "babel-eslint": "6.0.4",
-    "babel-plugin-transform-runtime": "6.8.0",
-    "babel-plugin-transform-strict-mode": "6.8.0",
     "babel-preset-es2015-node4": "2.1.0",
+    "babel-register": "6.8.0",
     "eslint": "2.9.0",
     "eslint-config-springworks": "7.0.3",
     "eslint-plugin-import": "1.8.0",
@@ -47,5 +41,14 @@
     "pre-git": {
       "commit-msg": "conventional"
     }
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Springworks/node-mongoose-cleaner.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Springworks/node-mongoose-cleaner/issues"
+  },
+  "homepage": "https://github.com/Springworks/node-mongoose-cleaner#readme"
 }
