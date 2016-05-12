@@ -12,10 +12,6 @@
     "postpublish": "greenkeeper-postpublish"
   },
   "author": "Springworks",
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:Springworks/mongoose-cleaner.git"
-  },
   "devDependencies": {
     "@springworks/test-harness": "1.3.4",
     "babel-cli": "6.8.0",
@@ -45,5 +41,13 @@
     "pre-git": {
       "commit-msg": "conventional"
     }
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Springworks/node-mongoose-cleaner.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Springworks/node-mongoose-cleaner/issues"
+  },
+  "homepage": "https://github.com/Springworks/node-mongoose-cleaner#readme"
 }
