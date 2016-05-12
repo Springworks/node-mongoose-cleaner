@@ -46,6 +46,7 @@
     "type": "git",
     "url": "https://github.com/Springworks/node-mongoose-cleaner.git"
   },
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/Springworks/node-mongoose-cleaner/issues"
   },
