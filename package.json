@@ -31,7 +31,7 @@
     "semantic-release": "4.3.5"
   },
   "dependencies": {
-    "lodash.mapvalues": "4.5.0"
+    "lodash.mapvalues": "4.5.1"
   },
   "engines": {
     "node": ">=4",
