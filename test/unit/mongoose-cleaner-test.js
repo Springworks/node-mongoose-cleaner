@@ -30,10 +30,7 @@ describe('test/unit/mongoose-cleaner-test.js', () => {
         const cleaned = cleaner.cleanMongooseDocument(document);
         cleaned.should.have.properties(params);
         cleaned._id.should.have.type('string');
-        cleaned.should.have.keys([
-          '_id',
-          'foo',
-        ]);
+        cleaned.should.have.keys('_id', 'foo');
       });
 
     });
