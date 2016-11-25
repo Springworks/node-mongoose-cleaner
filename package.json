@@ -1,6 +1,6 @@
 {
   "name": "@springworks/mongoose-cleaner",
-  "version": "1.0.6",
+  "version": "1.1.0",
   "description": "Strip out any mongoose info from a document",
   "main": "lib/mongoose-cleaner.js",
   "scripts": {
