@@ -1,3 +1,4 @@
+import autorestoredSandbox from '@springworks/test-harness/autorestored-sandbox';
 import mongoose from 'mongoose';
 import cleaner from '../../src/mongoose-cleaner';
 
@@ -7,6 +8,11 @@ const MockSchema = new mongoose.Schema({
   foo: { type: String, required: false },
   other_id: { type: ObjectId, required: false },
 });
+
+MockSchema.path('foo').get(value => {
+  return `${value}-added-by-getter`;
+});
+
 const MongooseCleanerModel = mongoose.model('MongooseCleanerModel', MockSchema);
 
 function createMongooseDocument(params) {
@@ -14,6 +20,7 @@ function createMongooseDocument(params) {
 }
 
 describe('test/unit/mongoose-cleaner-test.js', () => {
+  const sinon_sandbox = autorestoredSandbox();
 
   describe('cleanMongooseDocument', () => {
 
@@ -26,11 +33,24 @@ describe('test/unit/mongoose-cleaner-test.js', () => {
         document.__v = 4;
       });
 
+      beforeEach(() => {
+        sinon_sandbox.spy(document, 'toObject');
+      });
+
       it('should return document as pure Javascript object', () => {
         const cleaned = cleaner.cleanMongooseDocument(document);
-        cleaned.should.have.properties(params);
         cleaned._id.should.have.type('string');
         cleaned.should.have.keys('_id', 'foo');
+      });
+
+      it('should apply getters when doing toObject()', () => {
+        const cleaned = cleaner.cleanMongooseDocument(document);
+        document.toObject.should.be.calledOnce();
+        document.toObject.firstCall.args[0].should.have.properties({
+          getters: true,
+          virtuals: false,
+        });
+        cleaned.should.have.property('foo', 'bar-added-by-getter');
       });
 
     });
