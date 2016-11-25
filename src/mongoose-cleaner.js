@@ -23,7 +23,10 @@ const api = {
     let lean = mongoose_doc;
 
     if (isLookingLikeMongooseDocument(mongoose_doc)) {
-      lean = mongoose_doc.toObject();
+      lean = mongoose_doc.toObject({
+        getters: true,
+        virtuals: false,
+      });
     }
 
     delete lean.__v;
