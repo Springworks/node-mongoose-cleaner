@@ -6,7 +6,6 @@
   "scripts": {
     "test": "NODE_ENV=test mocha",
     "lint": "eslint .",
-    "commit": "commit-wizard",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "build": "rm -rf lib && babel src --out-dir lib",
     "prepublish": "npm run build",
@@ -28,7 +27,6 @@
     "greenkeeper-postpublish": "1.0.1",
     "mocha": "3.2.0",
     "mongoose": "4.7.0",
-    "pre-git": "3.11.1",
     "semantic-release": "6.3.2"
   },
   "dependencies": {
@@ -37,11 +35,6 @@
   "engines": {
     "node": ">=4",
     "npm": ">=2.7"
-  },
-  "config": {
-    "pre-git": {
-      "commit-msg": "conventional"
-    }
   },
   "repository": {
     "type": "git",
