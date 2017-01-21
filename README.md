@@ -1,5 +1,7 @@
 # mongoose-cleaner
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/Springworks/node-mongoose-cleaner.svg)](https://greenkeeper.io/)
+
 Clean out mongo/mongoose specific data from documents.
 
 # Usage
