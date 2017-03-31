@@ -1,5 +1,5 @@
-import autorestoredSandbox from '@springworks/test-harness/autorestored-sandbox';
 import mongoose from 'mongoose';
+import autorestoredSandbox from '@springworks/test-harness/autorestored-sandbox';
 import cleaner from '../../src/mongoose-cleaner';
 
 const ObjectId = mongoose.Schema.Types.ObjectId;
