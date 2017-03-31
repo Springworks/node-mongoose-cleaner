@@ -25,11 +25,12 @@ const api = {
     if (isLookingLikeMongooseDocument(mongoose_doc)) {
       lean = mongoose_doc.toObject({
         getters: true,
-        virtuals: false,
+        virtuals: true,
       });
     }
 
     delete lean.__v;
+    delete lean.id;
     return convertObjectIds(lean);
   },
 

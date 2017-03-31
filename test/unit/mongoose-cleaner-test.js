@@ -48,9 +48,10 @@ describe('test/unit/mongoose-cleaner-test.js', () => {
         document.toObject.should.be.calledOnce();
         document.toObject.firstCall.args[0].should.have.properties({
           getters: true,
-          virtuals: false,
+          virtuals: true,
         });
         cleaned.should.have.property('foo', 'bar-added-by-getter');
+        cleaned.should.not.have.property('id');
       });
 
     });
