@@ -13,6 +13,19 @@ function convertObjectIds(obj) {
   });
 }
 
+function removeIds(obj) {
+  for (const prop in obj) {
+    if (obj.hasOwnProperty(prop)) {
+      if (prop === 'id') {
+        delete obj[prop];
+      }
+      else if (typeof obj[prop] === 'object') {
+        removeIds(obj[prop]);
+      }
+    }
+  }
+}
+
 const api = {
 
   cleanMongooseDocument(mongoose_doc) {
@@ -30,8 +43,9 @@ const api = {
     }
 
     delete lean.__v;
-    delete lean.id;
-    return convertObjectIds(lean);
+    lean = convertObjectIds(lean);
+    removeIds(lean);
+    return lean;
   },
 
 };
