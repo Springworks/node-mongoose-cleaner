@@ -7,6 +7,11 @@ const ObjectId = mongoose.Schema.Types.ObjectId;
 const MockSchema = new mongoose.Schema({
   foo: { type: String, required: false },
   other_id: { type: ObjectId, required: false },
+  nested: [
+    {
+      nested_foo: { type: String, required: false },
+    },
+  ],
 });
 
 MockSchema.path('foo').get(value => {
@@ -17,6 +22,17 @@ const MongooseCleanerModel = mongoose.model('MongooseCleanerModel', MockSchema);
 
 function createMongooseDocument(params) {
   return new MongooseCleanerModel(params);
+}
+
+function assertNoIdProperties(obj) {
+  for (const prop in obj) {
+    if (obj.hasOwnProperty(prop)) {
+      prop.should.not.equal('id');
+      if (typeof obj[prop] === 'object') {
+        assertNoIdProperties(obj[prop]);
+      }
+    }
+  }
 }
 
 describe('test/unit/mongoose-cleaner-test.js', () => {
@@ -68,6 +84,29 @@ describe('test/unit/mongoose-cleaner-test.js', () => {
       it('should convert ObjectId property to String', () => {
         const cleaned = cleaner.cleanMongooseDocument(document);
         cleaned.other_id.should.have.type('string');
+      });
+
+    });
+
+    describe('with a DB document having a nested array of documents', () => {
+      let document;
+
+      beforeEach(() => {
+        document = createMongooseDocument({
+          nested: [
+            {
+              nested_foo: 'hello',
+            },
+            {
+              nested_foo: 'bar',
+            },
+          ],
+        });
+      });
+
+      it('should not have `id` anywhere on the document', () => {
+        const cleaned = cleaner.cleanMongooseDocument(document);
+        assertNoIdProperties(cleaned);
       });
 
     });
