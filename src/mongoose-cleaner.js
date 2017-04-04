@@ -1,26 +1,18 @@
-import mapValues from 'lodash.mapvalues';
-
 function isLookingLikeMongooseDocument(obj) {
   return typeof obj.toObject === 'function';
 }
 
-function convertObjectIds(obj) {
-  return mapValues(obj, value => {
-    if (value && value.constructor && value.constructor.name === 'ObjectID') {
-      return value.toString();
-    }
-    return value;
-  });
-}
-
-function removeIds(obj) {
+function transformIds(obj) {
   for (const prop in obj) {
     if (obj.hasOwnProperty(prop)) {
-      if (prop === 'id') {
+      if (obj[prop] && obj[prop].constructor && obj[prop].constructor.name === 'ObjectID') {
+        obj[prop] = obj[prop].toString();
+      }
+      else if (prop === 'id') {
         delete obj[prop];
       }
       else if (typeof obj[prop] === 'object') {
-        removeIds(obj[prop]);
+        transformIds(obj[prop]);
       }
     }
   }
@@ -43,8 +35,7 @@ const api = {
     }
 
     delete lean.__v;
-    lean = convertObjectIds(lean);
-    removeIds(lean);
+    transformIds(lean);
     return lean;
   },
 
