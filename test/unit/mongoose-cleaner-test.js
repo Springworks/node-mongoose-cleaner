@@ -12,6 +12,12 @@ const MockSchema = new mongoose.Schema({
       nested_foo: { type: String, required: false },
     },
   ],
+  nested_object_ids_level_1: {
+    nested_object_id_level_1: { type: ObjectId, required: false },
+    nested_object_ids_level_2: {
+      nested_object_id_level_2: { type: ObjectId, required: false },
+    },
+  },
 });
 
 MockSchema.path('foo').get(value => {
@@ -30,6 +36,19 @@ function assertNoIdProperties(obj) {
       prop.should.not.equal('id');
       if (typeof obj[prop] === 'object') {
         assertNoIdProperties(obj[prop]);
+      }
+    }
+  }
+}
+
+function assertNoObjectIdProperties(obj) {
+  for (const prop in obj) {
+    if (obj.hasOwnProperty(prop)) {
+      if (obj[prop] && obj[prop].constructor) {
+        obj[prop].constructor.name.should.not.equal('ObjectID');
+      }
+      if (typeof obj[prop] === 'object') {
+        assertNoObjectIdProperties(obj[prop]);
       }
     }
   }
@@ -107,6 +126,27 @@ describe('test/unit/mongoose-cleaner-test.js', () => {
       it('should not have `id` anywhere on the document', () => {
         const cleaned = cleaner.cleanMongooseDocument(document);
         assertNoIdProperties(cleaned);
+      });
+
+    });
+
+    describe('with a DB document having a nested ObjectID:s', () => {
+      let document;
+
+      beforeEach(() => {
+        document = createMongooseDocument({
+          nested_object_ids_level_1: {
+            nested_object_id_level_1: '537f844b2883b0d8c825270d',
+            nested_object_ids_level_2: {
+              nested_object_id_level_2: '337e844b2883b1d1c89527ad',
+            },
+          },
+        });
+      });
+
+      it('should not have `id` anywhere on the document', () => {
+        const cleaned = cleaner.cleanMongooseDocument(document);
+        assertNoObjectIdProperties(cleaned);
       });
 
     });
