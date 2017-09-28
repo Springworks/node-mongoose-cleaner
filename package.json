@@ -7,8 +7,7 @@
     "lint": "eslint .",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "build": "rm -rf lib && babel src --out-dir lib",
-    "prepublish": "npm run build",
-    "postpublish": "greenkeeper-postpublish"
+    "prepublish": "npm run build"
   },
   "author": "Springworks",
   "devDependencies": {
@@ -23,7 +22,6 @@
     "eslint-plugin-mocha": "^4.8.0",
     "eslint-plugin-should-promised": "^2.0.0",
     "eslint-plugin-springworks": "^2.0.1",
-    "greenkeeper-postpublish": "^1.0.1",
     "mocha": "^3.2.0",
     "mongoose": "^4.8.6",
     "semantic-release": "^6.3.2"
