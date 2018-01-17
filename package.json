@@ -23,7 +23,7 @@
     "eslint-plugin-should-promised": "^2.0.0",
     "eslint-plugin-springworks": "^2.0.1",
     "mocha": "^3.2.0",
-    "mongoose": "^4.8.6",
+    "mongoose": "^5.0.0",
     "semantic-release": "^6.3.2"
   },
   "dependencies": {
