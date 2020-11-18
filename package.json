@@ -24,7 +24,7 @@
     "eslint-plugin-springworks": "^2.0.1",
     "mocha": "^3.2.0",
     "mongoose": "5.7.12",
-    "semantic-release": "^6.3.2"
+    "semantic-release": "^17.2.3"
   },
   "dependencies": {
     "lodash.mapvalues": "^4.6.0"
